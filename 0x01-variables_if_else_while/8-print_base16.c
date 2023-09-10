@@ -7,20 +7,20 @@
  */
 int main(void)
 {
-    char num;
+	char ch;
 
-    // Print numbers 0 through 9
-    for (num = '0'; num <= '9'; num++)
-    {
-        putchar(num);
-    }
+	// Print numbers
+	for (ch = '0'; ch <= '9'; ch++)
+	{
+		putchar(ch);
+	}
 
-    // Print letters a through f
-    for (num = 'a'; num <= 'f'; num++)
-    {
-        putchar(num);
-    }
-    putchar('\n');
+	// Print lowercase letters
+	for (ch = 'a'; ch <= 'f'; ch++)
+	{
+		putchar(ch);
+	}
+	putchar('\n');
 
-    return (0);
+	return (0);
 }
