@@ -7,19 +7,14 @@
  */
 int main(void)
 {
-	char ch;
+	int num;
 
-	// Print numbers
-	for (ch = '0'; ch <= '9'; ch++)
-	{
-		putchar(ch);
-	}
+	for (num = 48; num < 58; num++)  /* ASCII values for 0-9 */
+		putchar(num);
 
-	// Print lowercase letters
-	for (ch = 'a'; ch <= 'f'; ch++)
-	{
-		putchar(ch);
-	}
+	for (num = 97; num < 103; num++)  /* ASCII values for a-f */
+		putchar(num);
+
 	putchar('\n');
 
 	return (0);
