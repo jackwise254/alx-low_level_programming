@@ -1,13 +1,5 @@
-/* "Header" contents */
-#ifndef MAIN_H
-#define MAIN_H
+#include "main.h"
 
-int _putchar(char c);
-void print_putchar(void);
-
-#endif /* MAIN_H */
-
-/* Implementation */
 void print_putchar(void)
 {
     char *str = "_putchar";
@@ -18,10 +10,4 @@ void print_putchar(void)
         str++;
     }
     _putchar('\n');
-}
-
-int main(void)
-{
-    print_putchar();
-    return (0);
 }
