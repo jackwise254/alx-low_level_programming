@@ -9,7 +9,7 @@ int main(void)
 {
         int i;
 
-        i = 0;  // This line has been changed
+        i = 0;  // This is the only line that is changed.
         positive_or_negative(i);
 
         return (0);
