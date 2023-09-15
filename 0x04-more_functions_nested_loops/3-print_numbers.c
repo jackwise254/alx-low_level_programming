@@ -5,11 +5,12 @@
  */
 void print_numbers(void)
 {
-    char num;
+    char numbers[] = "0123456789\n";
+    int i = 0;
 
-    for (num = '0'; num <= '9'; num++)
+    while (numbers[i])
     {
-        _putchar(num);
+        _putchar(numbers[i]);
+        i++;
     }
-    _putchar('\n');
 }
