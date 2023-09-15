@@ -10,7 +10,7 @@ int main(void)
         int i;
 
         i = 0;  // This line has been changed
-        void positive_or_negative(int i);
+        positive_or_negative(i);
 
         return (0);
 }
