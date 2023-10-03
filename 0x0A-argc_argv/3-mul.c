@@ -2,10 +2,11 @@
 #include <stdlib.h>
 
 /**
- * main - multiplies two numbers
- * @argc: argument count
- * @argv: argument vector
- * Return: 0 if successful, 1 if program does not receive two arguments
+ * main - multiplies two numbers.
+ * @argc: argument count.
+ * @argv: argument vector.
+ * 
+ * Return: 0 if successful, 1 if program does not receive two arguments.
  */
 int main(int argc, char *argv[])
 {
