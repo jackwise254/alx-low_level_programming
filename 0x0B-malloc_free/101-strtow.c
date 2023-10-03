@@ -25,6 +25,21 @@ int word_count(char *str)
 	return (count);
 }
 
+char *allocate_and_fill_word(char *str, int len)
+{
+	int j;
+	char *word = malloc(sizeof(char) * (len + 1));
+	
+	if (!word)
+		return (NULL);
+
+	for (j = 0; j < len; j++, str++)
+		word[j] = *str;
+	word[j] = '\0';
+
+	return word;
+}
+
 /**
  * strtow - Splits a string into words
  * @str: The string to split
@@ -34,7 +49,7 @@ int word_count(char *str)
 char **strtow(char *str)
 {
 	char **words;
-	int i = 0, j = 0, k, l, words_count;
+	int i = 0, l, words_count;
 
 	if (!str || !*str)
 		return (NULL);
@@ -56,23 +71,18 @@ char **strtow(char *str)
 		while (str[l] && str[l] != ' ' && str[l] != '\t' && str[l] != '\n')
 			l++;
 
-		words[i] = malloc(sizeof(char) * (l + 1));
+		words[i] = allocate_and_fill_word(str, l);
 		if (!words[i])
 		{
-			while (i >= 0)
-				free(words[--i]);
+			for (int k = 0; k < i; k++)
+				free(words[k]);
 			free(words);
 			return (NULL);
 		}
-
-		for (j = 0, k = 0; j < l; j++, k++, str++)
-			words[i][k] = *str;
-
-		words[i][k] = '\0';
+		str += l;
 		i++;
 	}
 
 	words[i] = NULL;
 	return (words);
 }
-
