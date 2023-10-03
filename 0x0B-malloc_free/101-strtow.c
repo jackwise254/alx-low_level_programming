@@ -22,16 +22,23 @@ int word_count(char *str)
 		}
 		i++;
 	}
-	return (count);
+	return count;
 }
 
+/**
+ * allocate_and_fill_word - Allocates memory and fills it with word
+ * @str: The string source
+ * @len: Length of the word
+ *
+ * Return: Pointer to the word, or NULL if it fails
+ */
 char *allocate_and_fill_word(char *str, int len)
 {
 	int j;
 	char *word = malloc(sizeof(char) * (len + 1));
 	
 	if (!word)
-		return (NULL);
+		return NULL;
 
 	for (j = 0; j < len; j++, str++)
 		word[j] = *str;
@@ -52,15 +59,15 @@ char **strtow(char *str)
 	int i = 0, l, words_count, k;
 
 	if (!str || !*str)
-		return (NULL);
+		return NULL;
 
 	words_count = word_count(str);
 	if (words_count == 0)
-		return (NULL);
+		return NULL;
 
 	words = malloc(sizeof(char *) * (words_count + 1));
 	if (!words)
-		return (NULL);
+		return NULL;
 
 	while (i < words_count && *str)
 	{
@@ -77,12 +84,11 @@ char **strtow(char *str)
 			for (k = 0; k < i; k++)
 				free(words[k]);
 			free(words);
-			return (NULL);
+			return NULL;
 		}
 		str += l;
 		i++;
 	}
-
 	words[i] = NULL;
-	return (words);
+	return words;
 }
