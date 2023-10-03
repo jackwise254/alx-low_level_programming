@@ -49,7 +49,7 @@ char *allocate_and_fill_word(char *str, int len)
 char **strtow(char *str)
 {
 	char **words;
-	int i = 0, l, words_count;
+	int i = 0, l, words_count, k;
 
 	if (!str || !*str)
 		return (NULL);
@@ -74,7 +74,7 @@ char **strtow(char *str)
 		words[i] = allocate_and_fill_word(str, l);
 		if (!words[i])
 		{
-			for (int k = 0; k < i; k++)
+			for (k = 0; k < i; k++)
 				free(words[k]);
 			free(words);
 			return (NULL);
