@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/jack/alx-low_level_programming/0x0A-argc_argv",
-      "program": "/home/jack/alx-low_level_programming/0x0A-argc_argv/build/Debug/outDebug",
+      "cwd": "/home/jack/Downloads/alx-low_level_programming",
+      "program": "/home/jack/Downloads/alx-low_level_programming/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
