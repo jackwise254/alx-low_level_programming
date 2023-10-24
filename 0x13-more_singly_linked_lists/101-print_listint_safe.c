@@ -2,6 +2,25 @@
 #include <stdio.h>
 
 /**
+ * is_node_visited - checks if a node has been visited before.
+ * @addr: address of node to check
+ * @visited_nodes: array of addresses to check against
+ * @index: number of nodes visited so far
+ *
+ * Return: 1 if node has been visited, 0 otherwise
+ */
+int is_node_visited(const listint_t *addr, const listint_t *visited_nodes[], size_t index)
+{
+    size_t i;
+    for (i = 0; i < index; i++)
+    {
+        if (visited_nodes[i] == addr)
+            return (1);
+    }
+    return (0);
+}
+
+/**
  * print_listint_safe - prints a listint_t linked list safely.
  * @head: pointer to the head of the list
  *
@@ -9,37 +28,23 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-    const listint_t *slow = head, *fast = head;
     size_t count = 0;
-    int loop_detected = 0;
+    const listint_t *visited_nodes[1024];
 
-    while (head && (!loop_detected || head != slow))
+    while (head)
     {
         printf("[%p] %d\n", (void *)head, head->n);
+        visited_nodes[count] = head;
         count++;
-        head = head->next;
 
-        if (loop_detected && head == slow)
+        if (is_node_visited(head->next, visited_nodes, count))
         {
-            printf("-> [%p] %d\n", (void *)head, head->n);
+            printf("-> [%p] %d\n", (void *)head->next, head->next->n);
             break;
         }
 
-        if (!loop_detected && fast && fast->next)
-        {
-            slow = slow->next;
-            fast = fast->next->next;
-
-            if (slow == fast)
-            {
-                loop_detected = 1;
-                slow = head;
-            }
-        }
+        head = head->next;
     }
-
-    if (!loop_detected && fast && !fast->next)
-        return (count);
 
     return (count);
 }
