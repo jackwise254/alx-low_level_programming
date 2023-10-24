@@ -1,51 +1,46 @@
 #include "lists.h"
+#include <stdio.h>
 
 /**
- * print_listint_safe - prints a listint_t linked list
- * @head: pointer to the start of the linked list
- * 
- * Return: the number of nodes in the list
+ * print_listint_safe - prints a listint_t linked list safely.
+ * @head: pointer to the head of the list
+ *
+ * Return: number of nodes in the list.
  */
 size_t print_listint_safe(const listint_t *head)
 {
-    const listint_t *slow, *fast, *marker;
-    size_t nodes = 0;
+    const listint_t *slow = head, *fast = head;
+    size_t count = 0;
+    int loop_detected = 0;
 
-    if (head == NULL)
-        exit(98);
-
-    slow = head;
-    fast = head;
-
-    while (slow && fast && fast->next)
+    while (head && (!loop_detected || head != slow))
     {
-        slow = slow->next;
-        fast = fast->next->next;
+        printf("[%p] %d\n", (void *)head, head->n);
+        count++;
+        head = head->next;
 
-        if (slow == fast) /* Loop detected */
+        if (loop_detected && head == slow)
         {
-            marker = head;
-            while (1)
+            printf("-> [%p] %d\n", (void *)head, head->n);
+            break;
+        }
+
+        if (!loop_detected && fast && fast->next)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if (slow == fast)
             {
-                if (marker == slow)
-                {
-                    printf("-> [%p] %d\n", (void *)marker, marker->n);
-                    return (nodes);
-                }
-                printf("[%p] %d\n", (void *)marker, marker->n);
-                marker = marker->next;
-                nodes++;
+                loop_detected = 1;
+                slow = head;
             }
         }
     }
 
-    /* No loop - print normally */
-    while (head)
-    {
-        printf("[%p] %d\n", (void *)head, head->n);
-        head = head->next;
-        nodes++;
-    }
+    if (!loop_detected && fast && !fast->next)
+        return (count);
 
-    return (nodes);
+    return (count);
 }
+
