@@ -1,16 +1,14 @@
-/* 5-hash_table_print.c */
 #include "hash_tables.h"
-#include <stdio.h>
 
 /**
- * hash_table_print - Prints a hash table.
+ * hash_table_print - Print a hash table.
  * @ht: The hash table to print.
  */
 void hash_table_print(const hash_table_t *ht)
 {
-    hash_node_t *node;
     unsigned long int i;
-    int first = 1;
+    hash_node_t *current;
+    int first = 1; /* Flag to print ',' and space */
 
     if (ht == NULL)
         return;
@@ -18,14 +16,15 @@ void hash_table_print(const hash_table_t *ht)
     printf("{");
     for (i = 0; i < ht->size; i++)
     {
-        node = ht->array[i];
-        while (node != NULL)
+        current = ht->array[i];
+        while (current)
         {
+            /* Print ',' and space if not the first pair */
             if (!first)
                 printf(", ");
-            printf("'%s': '%s'", node->key, node->value);
+            printf("'%s': '%s'", current->key, current->value);
             first = 0;
-            node = node->next;
+            current = current->next;
         }
     }
     printf("}\n");
